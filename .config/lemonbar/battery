@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Load constant
+. $(dirname $0)/lemconfig
+
+BATC=/sys/class/power_supply/BAT0/capacity
+BATS=/sys/class/power_supply/BAT0/status
+
+ICONS=("\uf244" "\uf243" "\uf242" "\uf241" "\uf240" "\uf0e7")
+capacity=$(cat $BATC)
+if [ $(cat $BATS) != "Charging" ]
+then
+	icon=${ICONS[$((capacity / 20))]}
+    if [[ capacity -lt 20 ]]
+    then
+        tag="%{F$color_warn}[bat]%{F-}"
+    else
+        tag="%{F$color_fore}[bat]%{F-}"
+    fi
+else
+	icon="%{F$color_high}${ICONS[5]}%{F-}"
+    tag="%{F$color_high}[chg]%{F-}"
+fi
+echo -e "$tag $(cat $BATC)%"

@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+
+# Export variables for use in other scripts (e.g. python)
+# Colors
+export LEM_RES_color_text="#FFFFFF"
+export LEM_RES_color_back="#1C2531"
+export LEM_RES_colora_back="#BB1C2531"
+export LEM_RES_color_fore="#6c71c4"
+export LEM_RES_color_high="#B58900"
+export LEM_RES_color_fade="#657B83"
+export LEM_RES_color_alert="#CB4B16"
+
+# Fonts
+export LEM_RES_font_size=12
+export LEM_RES_font_main="Tamsyn-$font_size"
+export LEM_RES_font_icon="Siji-$font_size"

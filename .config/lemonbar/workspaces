@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Load constant
+. $(dirname $0)/lemconfig
+
+filledWorkspaces=$(i3-msg -t get_workspaces | grep -Po '"'"name"'"\s*:\s*"\K([^"]*)')
+focusedWorkspace=$(i3-msg -t get_outputs | jq -r '.[1].current_workspace')
+color="$color_fade"
+for ((i=1; i<=10; i++)); do
+    if [[ ${focusedWorkspace} -eq ${i} ]]; then
+        color="$FFFFFF"
+    fi
+    if [[ $(echo ${filledWorkspaces} | grep -w "${i}") != "" ]]; then
+        out="\ue1c2 "
+    else
+        out="\ue1bc "
+    fi
+    output+="%{F$color}$out%{F-}"
+    color="$color_fade"
+done
+
+workspaceName=$(i3-msg -t get_tree | grep -o '"focused":true,.*' | sed 's/.*"instance":\"\([^"]*\)\",.*,"name":"\([^"]*\)",.*/\1 - \2/')
+echo -e "${output}"

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+. $(dirname $0)/lemconfig
+
+STATUS=$(pulseaudio-ctl full-status)
+VOL="$(echo $STATUS | awk '{print $1}')%"
+MUTE=$(echo $STATUS | awk '{print $2}')
+TAG="%{F$color_fore}[vol]%{F-}"
+if [ $MUTE = 'yes' ]
+then
+    TAG="%{F$color_alert}[mute]%{F-}"
+fi
+
+echo "$TAG $VOL"

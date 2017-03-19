@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+
+working_dir=$(dirname $0)
+# Load constants
+. $working_dir/lemconfig
+
+laptop="eDP-1"
+external="HDMI-1"
+
+sh $working_dir/topstart.sh | lemonbar -p -f $LEM_RES_font_main -f $LEM_RES_font_icon -B $LEM_RES_color_back -g 1920x24+0+0 &
+sh $working_dir/bottomstart.sh | lemonbar -p -b -f $LEM_RES_font_main -f $LEM_RES_font_icon -B $LEM_RES_color_back -g 1920x24+0+0
+
+sh $working_dir/bottomstart.sh > ~/output.txt
+if (xrandr | grep -e "^$external connected"); then
+    echo "More bars!"
+fi

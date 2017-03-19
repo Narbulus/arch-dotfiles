@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+. $(dirname $0)/lemconfig
+
+Clock () {
+	DATE=$(date "+%a %b %d")
+    TIME=$(date "+%T")
+	echo -n "%{F$color_fore}[$DATE]%{F-} $TIME"
+}
+
+echo "$(Clock)"

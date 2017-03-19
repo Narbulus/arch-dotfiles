@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+# Load constants
+. $(dirname $0)/lemconfig
+
+PREFIX="~/.config/lemonbar/"
+SPACER="%{F$color_fade} | %{F-}"
+while true; do
+    out="%{B$color_back}"
+    out+="%{c} $(sh ~/.config/lemonbar/workspaces $1)"
+    out+="%{B-}"
+    echo $out
+	sleep 1
+done

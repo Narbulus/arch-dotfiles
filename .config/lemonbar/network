@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+# Load constants
+. $(dirname $0)/lemconfig
+
+network=$(netctl-auto list | grep '*' | sed 's/* wlp2s0-\(.*\)/\1/')
+
+if [[ -z $network ]]
+then
+    echo "%{F$color_alert}[net]%{F-}"
+else
+    echo "%{F$color_fore}[net]%{F-} $network"
+fi
+

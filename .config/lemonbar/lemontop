@@ -1,0 +1,20 @@
+#!/usr/bin/bash
+
+# Load constants
+. $(dirname $0)/lemconfig
+
+PREFIX="~/.config/lemonbar/"
+SPACER="%{F$color_fade} | %{F-}"
+while true; do
+    out="%{B$color_back}"
+    out+="%{l} $(sh ~/.config/lemonbar/clock) "
+    out+="%{r}"
+    out+="$(sh ~/.config/lemonbar/volume)"
+    out+=$SPACER
+    out+="$(sh ~/.config/lemonbar/network)"
+    out+=$SPACER
+    out+="$(sh ~/.config/lemonbar/battery) "
+    out+="%{B-}"
+    echo $out
+	sleep 1
+done
